@@ -3,18 +3,15 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Main main = new Main();
-        //main.menu();
-        System.out.println("El numero decimal es: " + main.binarioADecimal(101));
-        main.parOImpar(5 );
-        main.multiploDe10(20);
-        main.numeroPrimo(1);
+        main.menu();
     }
-/*
+
     public void menu() {
         int opcion;
         Scanner scanner = new Scanner(System.in);
 
         do {
+            System.out.println();
             System.out.println("MENU");
             System.out.println("1. División Exacta");
             System.out.println("2. Binario a Decimal");
@@ -32,34 +29,70 @@ public class Main {
 
             switch (opcion) {
                 case 1:
-                    divisionExacta();
+                    double a, b;
+                    System.out.print("Ingresa el valor de a: ");
+                    a = scanner.nextDouble();
+                    System.out.print("Ingresa el valor de b: ");
+                    b = scanner.nextDouble();
+                    divisionExacta(a, b);
                     break;
                 case 2:
-                    binarioADecimal();
+                    int binario;
+                    System.out.print("Ingresa un número binario: ");
+                    binario = scanner.nextInt();
+                    System.out.println("El número decimal es: " + binarioADecimal(binario));
                     break;
                 case 3:
-                    parOImpar();
+                    int num;
+                    System.out.print("Ingresa un número: ");
+                    num = scanner.nextInt();
+                    parOImpar(num);
                     break;
                 case 4:
-                    multiploDe10();
+                    int multiplo;
+                    System.out.print("Ingresa un número: ");
+                    multiplo = scanner.nextInt();
+                    multiploDe10(multiplo);
                     break;
                 case 5:
-                    numeroPrimo();
+                    int primo;
+                    System.out.print("Ingresa un número: ");
+                    primo = scanner.nextInt();
+                    numeroPrimo(primo);
                     break;
                 case 6:
-                    factorial();
+                    int factorialNum;
+                    System.out.print("Ingresa un número para calcular su factorial: ");
+                    factorialNum = scanner.nextInt();
+                    int resultadoFactorial = factorial(factorialNum);
+                    System.out.println("El factorial de " + factorialNum + " es: " + resultadoFactorial);
                     break;
                 case 7:
                     mostrarNumeros();
                     break;
                 case 8:
-                    invertirFrase();
+                    scanner.nextLine(); // Limpiar el buffer
+                    String frase;
+                    System.out.print("Ingresa una frase: ");
+                    frase = scanner.nextLine();
+                    String fraseInvertida = invertirFrase(frase);
+                    System.out.println("Frase invertida: " + fraseInvertida);
                     break;
                 case 9:
-                    serieNumerica();
+                    int n;
+                    System.out.print("Ingresa el valor de N: ");
+                    n = scanner.nextInt();
+                    serieNumerica(n);
                     break;
                 case 10:
-                    capicua();
+                    int capicuaNum;
+                    System.out.print("Ingresa un número: ");
+                    capicuaNum = scanner.nextInt();
+                    if (esCapicua(capicuaNum)) {
+                        System.out.println("El número " + capicuaNum + " es capicúa.");
+                    } else {
+                        System.out.println("El número " + capicuaNum + " no es capicúa.");
+                    }
                     break;
                 case 0:
                     System.out.println("Saliendo del programa.");
@@ -70,30 +103,30 @@ public class Main {
         } while (opcion != 0);
 
         scanner.close();
-    }*/
+    }
 
     public void divisionExacta(double a, double b) {
         double division = a / b;
-        if (division == (int) division){
-            System.out.println("La division es exacta.");
-        }else {
-            System.out.println("La division no es exacta");
+        if (division == (int) division) {
+            System.out.println("La división es exacta.");
+        } else {
+            System.out.println("La división no es exacta");
         }
     }
 
     public int binarioADecimal(int a) {
-         String numeroStr = Integer.toString(a);
-         int cantDigitos = numeroStr.length();
-         char digito;
-         int numDecimal = 0;
-        for (int i = 0; i < cantDigitos ; i++) {
+        String numeroStr = Integer.toString(a);
+        int cantDigitos = numeroStr.length();
+        char digito;
+        int numDecimal = 0;
+        for (int i = 0; i < cantDigitos; i++) {
             digito = numeroStr.charAt(i);
-            if (digito == '1'){
-                numDecimal += (int) Math.pow(2,i);
+            if (digito == '1') {
+                numDecimal += (int) Math.pow(2, i);
             } else if (digito == '0') {
                 numDecimal += 0;
-            }else {
-                System.out.println("El numero no es binario");
+            } else {
+                System.out.println("El número no es binario");
                 break;
             }
         }
@@ -101,18 +134,18 @@ public class Main {
     }
 
     public void parOImpar(int num) {
-        if (num % 2 == 0){
-            System.out.println(num + " es un numero par");
-        }else {
-            System.out.println(num + " es un numero impar");
+        if (num % 2 == 0) {
+            System.out.println(num + " es un número par");
+        } else {
+            System.out.println(num + " es un número impar");
         }
     }
 
     public void multiploDe10(int a) {
-        if (a % 10 == 0){
-            System.out.println(a + " es multiplo de 10");
+        if (a % 10 == 0) {
+            System.out.println(a + " es múltiplo de 10");
         } else {
-            System.out.println(a + " no es multiplo de 10");
+            System.out.println(a + " no es múltiplo de 10");
         }
     }
 
@@ -120,41 +153,79 @@ public class Main {
         int contador = 0;
 
         for (int i = 1; i <= a; i++) {
-            if((a % i) == 0)
-            {
+            if ((a % i) == 0) {
                 contador++;
             }
         }
         if (a > 0) {
             if (contador <= 2) {
-                System.out.println("El numero " + a + " es primo");
+                System.out.println("El número " + a + " es primo");
             } else {
-                System.out.println("El numero " + a + " no es primo");
+                System.out.println("El número " + a + " no es primo");
             }
-        }else {
-            System.out.println("El numero " + a + " no es primo");
+        } else {
+            System.out.println("El número " + a + " no es primo");
         }
     }
 
-
-    public void factorial() {
-        // Agrega la lógica para "Factorial" aquí
+    public int factorial(int num) {
+        if (num == 0) {
+            return 1;
+        } else {
+            int result = 1;
+            for (int i = 1; i <= num; i++) {
+                result *= i;
+            }
+            return result;
+        }
     }
 
     public void mostrarNumeros() {
-        // Agrega la lógica para "Mostrar N números" aquí
+        int n;
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingresa la cantidad de números que deseas mostrar: ");
+        n = scanner.nextInt();
+        for (int i = 1; i <= n; i++) {
+            System.out.println(i);
+        }
     }
 
-    public void invertirFrase() {
-        // Agrega la lógica para "Invertir Frase" aquí
+    public String invertirFrase(String frase) {
+        String[] palabras = frase.split(" ");
+        StringBuilder resultado = new StringBuilder();
+
+        for (int i = palabras.length - 1; i >= 0; i--) {
+            resultado.append(palabras[i]);
+            if (i > 0) {
+                resultado.append(" ");
+            }
+        }
+
+        return resultado.toString();
     }
 
-    public void serieNumerica() {
-        // Agrega la lógica para "Serie numérica" aquí
+    public void serieNumerica(int n) {
+        int start = 1;
+        for (int i = 0; i < n; i++) {
+            System.out.print(start + " ");
+            if (i % 2 == 0) {
+                start += 4;
+            } else {
+                start -= 2;
+            }
+        }
     }
 
-    public void capicua() {
-        // Agrega la lógica para "Capicúa" aquí
+    public boolean esCapicua(int num) {
+        int originalNum = num;
+        int reversedNum = 0;
+        while (num > 0) {
+            int digito = num % 10;
+            reversedNum = reversedNum * 10 + digito;
+            num /= 10;
+        }
+        return originalNum == reversedNum;
     }
 }
+
 
